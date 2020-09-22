@@ -1,7 +1,8 @@
 <?php
-$eura = filter_input(INPUT_POST,"eura");
+$eur = filter_input(INPUT_POST,"eur");
 $czk = 27;
-$sub =filter_input(INPUT_POST, "odeslat");
+$sub = filter_input(INPUT_POST, "odeslat");
+$switch = filter_input(INPUT_POST, "switch");
 ?>
 
 <!DOCTYPE html>
@@ -12,24 +13,27 @@ $sub =filter_input(INPUT_POST, "odeslat");
     <title>Document</title>
 </head>
 <body>
+
 <?php
-
 if (isset($sub)) {
-    if (isset($eu)) { ?>
-       Výsledek v K: <?= $eura * $czk ?>
-       <?php     
-    } elseif (condition) {
-        # code...
+    if ($switch == 2) { ?>
+      <?= $eur ?> Eur je <?= $eur * $czk ?> Kč
+      <?php
+    } elseif ($switch == 1) { ?>
+      <?= $eur ?> Kč je <?= $eur / $czk ?> Eur 
+      <?php
     }
-}
-    # code...
-}
 
 
-
-
-
-
-?>
+} else { ?>
+   <form action="index.php" method="post">
+Peníze: <input type="text" name="eur" id="eur"> <br>
+        CZK to EUR: <input type="radio" name="switch" value="1" id="switch"><br>
+        EUR to CZK: <input type="radio" name="switch" value="2" id="switch"><br>
+        <input type="submit" value="odeslat" name="odeslat">
+    </form>
+<?php
+} ?>
+ 
 </body>
 </html>
