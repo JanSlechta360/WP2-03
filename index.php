@@ -1,6 +1,6 @@
 <?php
 $eur = filter_input(INPUT_POST,"eur");
-$czk = 27;
+define('EUR_CZK', 27);
 $sub = filter_input(INPUT_POST, "odeslat");
 $switch = filter_input(INPUT_POST, "switch");
 ?>
@@ -17,10 +17,10 @@ $switch = filter_input(INPUT_POST, "switch");
 <?php
 if (isset($sub)) {
     if ($switch == 2) { ?>
-      <?= $eur ?> Eur je <?= $eur * $czk ?> Kč
+      <?= $eur ?> Eur je <?= $eur * EUR_CZK ?> Kč
       <?php
     } elseif ($switch == 1) { ?>
-      <?= $eur ?> Kč je <?= $eur / $czk ?> Eur 
+      <?= $eur ?> Kč je <?= $eur / EUR_CZK ?> Eur 
       <?php
     }
 
